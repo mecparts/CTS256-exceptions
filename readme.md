@@ -88,7 +88,7 @@ format was derived:
 
 <[encoded word or symbol]< = [encoded allophone address(es)]
 
-<table>
+<table border=0>
 <tr><td>where</td><td>< equals 13H</td></tr>
 <tr><td></td><td>[ equals 40H</td></tr>
 <tr><td></td><td>] equals 80H</td></tr>
@@ -129,7 +129,7 @@ allophone in the string, is represented by its value from TABLE-2.
 3. The last allophone is represented by its value from TABLE-2 plus the
 value of the right bracket "]" which is 80H.
 
-<table style="font-family: monospace">
+<table border=0 style="font-family: monospace">
 <tr><td>Example:</td><td colspan=2>To encode "Au" to pronounce as "GOLD"</td></tr>
 <tr><td></td><td colspan=2><[Au]< = [GG2 OW LL DD1]</td></tr>
 <tr><td></td><td>13, F5, 13, 7D, 35, 2D, 95</td><td> <--This line is ready to store in</td></tr>
@@ -263,6 +263,7 @@ become "up and down" with the example exception list).
 <tr><td>3E</td><td>EL&nbsp;</td><td>saddLE</td><td>140</td></tr>
 <tr><td>3F</td><td>BB2</td><td>Business</td><td>&nbsp;60</td></tr>
 </table>
+
 ## Using the Exception-Word Generator
 
 The Exception-Word Generator is written in fairly standard C. Any
