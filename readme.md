@@ -60,18 +60,18 @@ The format of the input file to the Xception program is as follows:
 
        BASE n ; where n is a hex digit between 1 and E, representing the
               ; base 4K address of the generated EPROM
-       <&#91;WORD]<=&#91;allophone...]
-       <&#91;WORD]<=&#91;allophone...]
+       <[WORD]<=[allophone...]
+       <[WORD]<=[allophone...]
             .
             .
             .
-       <&#91;WORD]<=&#91;allophone...]
-       <&#91;SYMBOL or DIGIT]<=&#91;allophone...]
-       <&#91;SYMBOL or DIGIT]<=&#91;allophone...]
+       <[WORD]<=[allophone...]
+       <[SYMBOL or DIGIT]<=[allophone...]
+       <[SYMBOL or DIGIT]<=[allophone...]
             .
             .
             .
-       <&#91;SYMBOL or DIGIT]<=&#91;allophone...]
+       <[SYMBOL or DIGIT]<=[allophone...]
 
 
 The format of the word/allophone definitions is the same as what's shown
@@ -85,10 +85,10 @@ To store a unique word or symbol and its corresponding allophone address
 string in an efficient and flexible manner, the following encoding
 format was derived:
 
-       <&#91;encoded word or symbol]< = &#91;encoded allophone address(es)]
+       <[encoded word or symbol]< = [encoded allophone address(es)]
 
        where < equals 13H
-             &#91; equals 40H
+             [ equals 40H
              ] equals 80H
 
 The first and last bytes is 13H. This informs the code-to-speech
@@ -128,7 +128,7 @@ value of the right bracket "]" which is 80H.
 
 
        Example: To encode "Au" to pronounce as "GOLD"
-       <&#91;Au]< = &#91;GG2 OW LL DD1]
+       <[Au]< = [GG2 OW LL DD1]
        13, F5, 13, 7D, 35, 2D, 95 <--This line is ready to store in
            ^                         EXCEPTION-WORD EPROM under the
            |                         "A" category. (The encoded string
@@ -137,14 +137,14 @@ value of the right bracket "]" which is 80H.
            +--Remember, throw away the first letter (in this case an
               "A"), then find the value of the next letter in TABLE-1
               and add 40H plus 80H to it so as to represent the left
-              "&#91;" and right "]" brackets.
+              "[" and right "]" brackets.
 
 For words, the leading "<" (which marks the start of a word) is
 mandatory. The trailing "<" (which marks the end of the word)
 is optional, and if it's left off it marks
 the word as a prefix form. This allows constructs such as:
 
-       <&#91;CAP]A=&#91;KK1 EY PP] ; CAPABILITY, CAPABLE
+       <[CAP]A=[KK1 EY PP] ; CAPABILITY, CAPABLE
 
 Without this, "capable" would be pronounced "cap-able", whereas it ought
 to be "cape-able".
