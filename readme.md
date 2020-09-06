@@ -60,18 +60,18 @@ The format of the input file to the Xception program is as follows:
 
        BASE n ; where n is a hex digit between 1 and E, representing the
               ; base 4K address of the generated EPROM
-       <[WORD]<=[allophone...]
-       <[WORD]<=[allophone...]
+       <&#91;WORD]<=&#91;allophone...]
+       <&#91;WORD]<=&#91;allophone...]
             .
             .
             .
-       <[WORD]<=[allophone...]
-       <[SYMBOL or DIGIT]<=[allophone...]
-       <[SYMBOL or DIGIT]<=[allophone...]
+       <&#91;WORD]<=&#91;allophone...]
+       <&#91;SYMBOL or DIGIT]<=&#91;allophone...]
+       <&#91;SYMBOL or DIGIT]<=&#91;allophone...]
             .
             .
             .
-       <[SYMBOL or DIGIT]<=[allophone...]
+       <&#91;SYMBOL or DIGIT]<=&#91;allophone...]
 
 
 The format of the word/allophone definitions is the same as what's shown
@@ -85,14 +85,11 @@ To store a unique word or symbol and its corresponding allophone address
 string in an efficient and flexible manner, the following encoding
 format was derived:
 
+       <&#91;encoded word or symbol]< = &#91;encoded allophone address(es)]
 
-<[encoded word or symbol]< = [encoded allophone address(es)]
-
-<table border=0>
-<tr><td>where</td><td>< equals 13H</td></tr>
-<tr><td></td><td>[ equals 40H</td></tr>
-<tr><td></td><td>] equals 80H</td></tr>
-</table>
+       where < equals 13H
+             &#91; equals 40H
+             ] equals 80H
 
 The first and last bytes is 13H. This informs the code-to-speech
 algorithm that the word or symbol is not a prefix or suffix.
@@ -129,26 +126,25 @@ allophone in the string, is represented by its value from TABLE-2.
 3. The last allophone is represented by its value from TABLE-2 plus the
 value of the right bracket "]" which is 80H.
 
-<table border=0 style="font-family: monospace">
-<tr><td>Example:</td><td colspan=2>To encode "Au" to pronounce as "GOLD"</td></tr>
-<tr><td></td><td colspan=2><[Au]< = [GG2 OW LL DD1]</td></tr>
-<tr><td></td><td>13, F5, 13, 7D, 35, 2D, 95</td><td> <--This line is ready to store in</td></tr>
-<tr><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;^</td><td>&nbsp;&nbsp;&nbsp;&nbsp;EXCEPTION-WORD EPROM under the</td></tr>
-<tr><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;|</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"A" category. (The encoded string</td></tr>
-<tr><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;|</td><td>&nbsp;&nbsp;&nbsp;&nbsp;is shown in Hex notation.)</td></tr>
-<tr><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;|</td><td></td></tr>
-<tr><td></td><td colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;+--Remember, throw away the first letter (in this case an</td></tr>
-<tr><td></td><td colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"A"), then find the value of the next letter in TABLE-1</td></tr>
-<tr><td></td><td colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and add 40H plus 80H to it so as to represent the left</td></tr>
-<tr><td></td><td colspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"[" and right "]" brackets.</td></tr>
-</table>
+
+       Example: To encode "Au" to pronounce as "GOLD"
+       <&#91;Au]< = &#91;GG2 OW LL DD1]
+       13, F5, 13, 7D, 35, 2D, 95 <--This line is ready to store in
+           ^                         EXCEPTION-WORD EPROM under the
+           |                         "A" category. (The encoded string
+           |                         is shown in Hex notation.)
+           |
+           +--Remember, throw away the first letter (in this case an
+              "A"), then find the value of the next letter in TABLE-1
+              and add 40H plus 80H to it so as to represent the left
+              "&#91;" and right "]" brackets.
 
 For words, the leading "<" (which marks the start of a word) is
 mandatory. The trailing "<" (which marks the end of the word)
 is optional, and if it's left off it marks
 the word as a prefix form. This allows constructs such as:
 
-       <[CAP]A=[KK1 EY PP] ; CAPABILITY, CAPABLE
+       <&#91;CAP]A=&#91;KK1 EY PP] ; CAPABILITY, CAPABLE
 
 Without this, "capable" would be pronounced "cap-able", whereas it ought
 to be "cape-able".
