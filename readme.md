@@ -273,6 +273,13 @@ the note reveals that the exception code can spread over multiple 4K
 blocks, up to a maximum of 48K using the memory map in the application
 note.
 
+A demonstration Arduino sketch is included that shows the operation of
+the EPROM. The computer Joshua's lines from the 1983 film
+[WarGames](https://en.wikipedia.org/wiki/WarGames). Several words from
+Joshua's lines (e.g. file, minutes, island) are not rendered properly by
+the CTS256. When the exception-word EPROM is included in the circuit,
+they are spoken correctly (without mangling the spelling of the text).
+
 ## References
 
 * [GI CTS256A-AL2 Code to Speech Chipset AN-0505D](http://www.textfiles.com/bitsavers/pdf/gi/speech/General_Instrument_-_AN-0505D_-_CTS256A-AL2_Code-to-Speech_Chipset_-_10Dec1986.pdf)
