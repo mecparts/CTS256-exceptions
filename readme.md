@@ -1,5 +1,6 @@
 # An Exception-Word EPROM Generator for the CTS256AL2 
 
+![Breadboarded circuit](not_quite_mythical_cts256a-al2.jpg "Breadboarded circuit")
 ## Background
 
 The CTS256 is a companion chip to its better known sibling, the
