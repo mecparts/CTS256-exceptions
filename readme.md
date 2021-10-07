@@ -80,6 +80,11 @@ in the GI application note. The words should be ordered alphabetically
 (A-Z) but only by the first letter; within each letter group, the
 ordering of the words isn't important.
 
+Words that are spoken differently depending on their usage, like *wind*
+as a verb (*wind* the clock) or a noun (the *wind* is blowing) can be
+differentiated by appending *(V)* or *(N)* to the word definition 
+(<[WIND(N)]< for example).
+
 ## Exception-Word Encoding Scheme
 
 To store a unique word or symbol and its corresponding allophone address
