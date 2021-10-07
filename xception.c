@@ -285,7 +285,8 @@ int main(int argc, char *argv[]) {
             }
             break;
          case IN_WORD:
-            if( !wordLength || isalnum(c) || c == '\'' || c == '(' || c == ')' ) {
+            if( !wordLength || (c >= ' ' && c < '[') || (c == '\\') || 
+               (c >= '^' && c <='~') || (c >= '{' && c <= '~') ) {
                if( wordLength >= sizeof word - 1) {
                   errors("Word '%s' is too long", word);
                }

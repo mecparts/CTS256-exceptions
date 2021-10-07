@@ -150,7 +150,7 @@ mandatory. The trailing "<" (which marks the end of the word)
 is optional, and if it's left off it marks
 the word as a prefix form. This allows constructs such as:
 
-       <[CAP]A=[KK1 EY PP] ; CAPABILITY, CAPABLE
+       <[CAP]AB=[KK1 EY PP] ; CAPABILITY, CAPABLE
 
 Without this, "capable" would be pronounced "cap-able", whereas it ought
 to be "cape-able".
