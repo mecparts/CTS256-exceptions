@@ -154,7 +154,7 @@ static void hexout(uint8_t *bin, uint16_t base, uint16_t lng) {
          printf(":10%04X00", addr);
          checksum = 0x10 + ((addr) >> 8) + ((addr) & 0xFF);
       }
-      val = bin[addr];
+      val = bin[addr-base];
       checksum += val;
       printf("%02X", val);
       if( (addr & 0x0F) == 0x0F ) {
@@ -204,7 +204,7 @@ int main(int argc, char *argv[]) {
 
    // this section needs to be revisited at the first
    // opportunity and replaced with something more robust
-   ok = scanf("BASE %2s",&baseStr) == 1 && strlen(baseStr) == 1;
+   ok = scanf("BASE %2s",baseStr) == 1 && strlen(baseStr) == 1;
    if( ok ) {
       // valid values for base are 1..9,A..E
       char baseChar = toupper(baseStr[0]);
@@ -285,7 +285,7 @@ int main(int argc, char *argv[]) {
             }
             break;
          case IN_WORD:
-            if( !wordLength || isalpha(c) || c == '\'' ) {
+            if( !wordLength || isalnum(c) || c == '\'' || c == '(' || c == ')' ) {
                if( wordLength >= sizeof word - 1) {
                   errors("Word '%s' is too long", word);
                }
